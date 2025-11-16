@@ -1,5 +1,10 @@
 const projects = [
   {
+    title: "MenuByte",
+    description: "Digital menu and ordering experience built for restaurants.",
+    url: "https://menubyte.e-nove.dev"
+  },
+  {
     title: "Nova Commerce",
     description: "Headless eCommerce experience with real-time inventory and personalized journeys."
   },
@@ -24,9 +29,30 @@ export default function Portfolio() {
         <div className="grid gap-6 md:grid-cols-3">
           {projects.map((project) => (
             <div key={project.title} className="card p-6 lg:p-8 space-y-4">
-              <div className="aspect-[4/3] w-full rounded-xl border border-white/15 bg-white/5" />
+              {project.url ? (
+                <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/15 bg-white/5">
+                  <iframe
+                    src={project.url}
+                    title={`${project.title} preview`}
+                    className="h-full w-full scale-[1.01]"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div className="aspect-[4/3] w-full rounded-xl border border-white/15 bg-white/5" />
+              )}
               <h3 className="text-lg font-semibold">{project.title}</h3>
               <p className="text-white/70 leading-relaxed">{project.description}</p>
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex text-sm font-semibold text-white/80 hover:text-white underline underline-offset-4"
+                >
+                  Visit site
+                </a>
+              )}
             </div>
           ))}
         </div>
