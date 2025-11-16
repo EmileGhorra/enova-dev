@@ -2,7 +2,7 @@ const projects = [
   {
     title: "MenuByte",
     description: "Digital menu and ordering experience built for restaurants.",
-    url: "https://menubyte.e-nove.dev"
+    url: "https://menubyte.e-nova.dev"
   },
   {
     title: "Nova Commerce",
