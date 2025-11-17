@@ -15,6 +15,10 @@ body {
   scroll-behavior: smooth;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -157,4 +161,25 @@ input:focus, textarea:focus {
   margin: 0 auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.page-shell {
+  min-height: 100vh;
+  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+}
+
+.menu-open .page-shell {
+  transform: translateX(-60vw);
+  filter: blur(6px) saturate(80%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .menu-open .page-shell {
+    transform: none;
+    filter: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
