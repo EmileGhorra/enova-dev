@@ -1,4 +1,7 @@
+'use client';
+
 import { BoltIcon, CloudIcon, CommandLineIcon, CubeTransparentIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
+import Reveal from "./Reveal";
 
 const stacks = [
   { name: "Next.js", icon: RocketLaunchIcon },
@@ -13,13 +16,15 @@ export default function TechStack() {
   return (
     <section id="tech" className="section">
       <div className="container">
-        <h2 className="section-heading">Tech Stack</h2>
-        <p className="section-subtitle">
-          Modern, reliable technologies chosen to deliver blazing speed, security, and effortless scalability.
-        </p>
+        <Reveal className="space-y-2 text-center">
+          <h2 className="section-heading">Tech Stack</h2>
+          <p className="section-subtitle">
+            Modern, reliable technologies chosen to deliver blazing speed, security, and effortless scalability.
+          </p>
+        </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           {stacks.map((stack) => (
-            <div
+            <Reveal
               key={stack.name}
               className="card flex flex-col items-center justify-center gap-3 p-4 text-center"
             >
@@ -27,7 +32,7 @@ export default function TechStack() {
                 <stack.icon className="h-6 w-6 text-white" />
               </div>
               <span className="text-sm font-medium whitespace-nowrap">{stack.name}</span>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

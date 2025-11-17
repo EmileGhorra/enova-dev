@@ -1,4 +1,7 @@
+'use client';
+
 import { CodeBracketIcon, DevicePhoneMobileIcon, SwatchIcon } from "@heroicons/react/24/outline";
+import Reveal from "./Reveal";
 
 const services = [
   {
@@ -22,19 +25,27 @@ export default function Services() {
   return (
     <section id="services" className="section">
       <div className="container">
-        <h2 className="section-heading">Services</h2>
-        <p className="section-subtitle">
-          From concept to launch, we craft digital products that are elegant, fast, and future-proof.
-        </p>
+        <Reveal className="space-y-2 text-center">
+          <h2 className="section-heading">Services</h2>
+          <p className="section-subtitle">
+            From concept to launch, we craft digital products that are elegant, fast, and future-proof.
+          </p>
+        </Reveal>
         <div className="grid gap-6 md:grid-cols-3">
           {services.map((service) => (
-            <div key={service.title} className="card p-6 lg:p-8 space-y-4">
-              <div className="h-12 w-12 rounded-full border border-white/15 flex items-center justify-center text-white/80">
-                <service.icon className="h-6 w-6" />
+            <Reveal key={service.title} className="card p-6 lg:p-8 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12 rounded-full border border-white/15 flex items-center justify-center text-white/80 bg-white/5">
+                  <service.icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold">{service.title}</h3>
               </div>
-              <h3 className="text-xl font-semibold">{service.title}</h3>
               <p className="text-white/70 leading-relaxed">{service.description}</p>
-            </div>
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/50">
+                <span className="inline-block h-px w-8 bg-white/20" />
+                Precision & Performance
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
