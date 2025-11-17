@@ -7,18 +7,6 @@ const projects = [
     title: "MenuByte",
     description: "Digital menu and ordering experience built for restaurants.",
     url: "https://menubyte.e-nova.dev"
-  },
-  {
-    title: "Nova Commerce",
-    description: "Headless eCommerce experience with real-time inventory and personalized journeys."
-  },
-  {
-    title: "Pulse Analytics",
-    description: "Data-rich dashboards with streaming insights and executive-ready storytelling."
-  },
-  {
-    title: "Orbit Mobile",
-    description: "Cross-platform mobile suite delivering frictionless onboarding and engagement."
   }
 ];
 
@@ -32,7 +20,7 @@ export default function Portfolio() {
             A snapshot of the experiences we craft — purposeful, polished, and performance-driven.
           </p>
         </Reveal>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-1">
           {projects.map((project, idx) => (
             <div key={project.title} className="card p-6 lg:p-8 space-y-4">
               <Reveal delay={idx * 90}>
