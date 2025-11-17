@@ -186,17 +186,17 @@ export default function Navbar() {
         <div className="grid grid-cols-3 items-center md:hidden py-3">
           <div />
           <Link href="#home" className="flex items-center justify-center gap-2">
-            <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/20 bg-white p-1">
+            <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/20 bg-white p-[3px]">
               <Image src="/logo.png" alt="E-Nova Dev" fill className="object-contain" priority />
             </div>
-            <span className="text-base font-semibold tracking-wide">E-Nova</span>
+            <span className="text-sm font-semibold tracking-wide leading-none">E-Nova</span>
           </Link>
           <div className="flex items-center justify-end">
             <button
               type="button"
               aria-label="Toggle menu"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white"
             >
               {open ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
             </button>
