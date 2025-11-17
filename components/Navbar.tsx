@@ -25,12 +25,6 @@ export default function Navbar() {
   const progressRef = useRef(0);
 
   useEffect(() => {
-    const handler = () => setOpen(false);
-    window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
-  }, []);
-
-  useEffect(() => {
     setMounted(true);
   }, []);
 
@@ -145,6 +139,7 @@ export default function Navbar() {
     };
   }, [open, dragging]);
 
+  const closeMenu = () => setOpen(false);
   const overlayActive = progress > 0.01;
   const asideStyle = {
     transform: `translateX(${(1 - Math.min(Math.max(progress, 0), 1)) * 100}%)`,
@@ -166,20 +161,22 @@ export default function Navbar() {
             <span className="text-lg font-semibold tracking-wide">E-Nova</span>
           </Link>
           <div className="flex items-center gap-8 text-sm uppercase tracking-[0.08em]">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={activeSection === link.href.replace("#", "") ? "page" : undefined}
-                className={`transition-colors ${
-                  activeSection === link.href.replace("#", "")
-                    ? "text-white"
-                    : "text-white/70 hover:text-white"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const id = link.href.replace("#", "");
+              const isActive = !open && activeSection === id;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`transition-colors ${
+                    isActive ? "text-white" : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
 
@@ -211,7 +208,7 @@ export default function Navbar() {
                   overlayActive ? "pointer-events-auto" : "pointer-events-none"
                 } bg-black/80 backdrop-blur-sm`}
                 style={overlayStyle}
-                onClick={() => setOpen(false)}
+                onClick={closeMenu}
               />
               <aside
                 className="fixed right-0 top-0 z-50 h-full w-[78vw] max-w-xs sm:max-w-sm transform bg-black/95 backdrop-blur-md border-l border-white/10 transition-transform duration-300 md:hidden"
@@ -222,28 +219,32 @@ export default function Navbar() {
                   <button
                     type="button"
                     aria-label="Close menu"
-                    onClick={() => setOpen(false)}
+                    onClick={closeMenu}
                     className="rounded-full border border-white/10 p-2 text-white/80"
                   >
                     <XMarkIcon className="h-5 w-5" />
                   </button>
                 </div>
-          <div className="flex flex-col gap-3 px-5 py-6 text-sm uppercase tracking-[0.12em]">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={activeSection === link.href.replace("#", "") ? "page" : undefined}
-                className={`rounded-lg border px-3 py-3 transition-colors ${
-                  activeSection === link.href.replace("#", "")
-                    ? "border-white/40 bg-white/10 text-white"
-                    : "border-white/10 bg-white/5 text-white/80 hover:text-white hover:border-white/30"
-                }`}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+                <div className="flex flex-col gap-3 px-5 py-6 text-sm uppercase tracking-[0.12em]">
+                  {navLinks.map((link) => {
+                    const id = link.href.replace("#", "");
+                    const isActive = !open && activeSection === id;
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`rounded-lg border px-3 py-3 transition-colors ${
+                          isActive
+                            ? "border-white/40 bg-white/10 text-white"
+                            : "border-white/10 bg-white/5 text-white/80 hover:text-white hover:border-white/30"
+                        }`}
+                        onClick={closeMenu}
+                      >
+                        {link.label}
+                      </Link>
+                    );
+                  })}
                 </div>
               </aside>
             </>,
