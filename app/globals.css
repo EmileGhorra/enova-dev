@@ -71,15 +71,14 @@ input, textarea {
   background-color: transparent;
   color: #fff;
   border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 9999px;
-  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  padding: 0.65rem 1rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 textarea {
-  border-radius: 1rem;
-  min-height: 160px;
+  min-height: 180px;
   resize: vertical;
 }
 
