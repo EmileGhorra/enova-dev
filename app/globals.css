@@ -169,9 +169,9 @@ input:focus, textarea:focus {
 }
 
 .menu-open .page-shell {
-  transform: translateX(-60vw);
+  transform: translateX(-70vw);
   filter: blur(6px) saturate(80%);
-  opacity: 0.9;
+  opacity: 0.85;
   pointer-events: none;
 }
 
