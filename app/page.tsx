@@ -12,10 +12,10 @@ import ParallaxBackdrop from "@/components/ParallaxBackdrop";
 export default function HomePage() {
   return (
     <SmoothScroll>
-      <main className="relative bg-black text-white min-h-screen overflow-hidden">
+      <main className="relative bg-black text-white min-h-screen">
         <ParallaxBackdrop />
-        <div className="relative z-10">
-          <Navbar />
+        <Navbar />
+        <div className="relative z-10 page-shell pt-20">
           <Hero />
           <Services />
           <TechStack />

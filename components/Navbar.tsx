@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -18,6 +18,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const startX = useRef(0);
+  const dragMode = useRef<"opening" | "closing" | null>(null);
+  const progressRef = useRef(0);
 
   useEffect(() => {
     const handler = () => setOpen(false);
@@ -28,6 +33,21 @@ export default function Navbar() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!dragging) {
+      setProgress(open ? 1 : 0);
+    }
+  }, [open, dragging]);
+
+  useEffect(() => {
+    progressRef.current = progress;
+    if (typeof document !== "undefined") {
+      const root = document.documentElement;
+      const isDesktop = window.innerWidth >= 768;
+      root.style.setProperty("--menu-progress", isDesktop ? "0" : progress.toString());
+    }
+  }, [progress]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,41 +75,64 @@ export default function Navbar() {
 
   useEffect(() => {
     const body = document.body;
-    if (open) {
+    if (open || progress > 0.05) {
       body.classList.add("menu-open");
     } else {
       body.classList.remove("menu-open");
     }
-    return () => body.classList.remove("menu-open");
-  }, [open]);
+    if (dragging) {
+      body.classList.add("nav-dragging");
+    } else {
+      body.classList.remove("nav-dragging");
+    }
+    return () => {
+      body.classList.remove("menu-open");
+      body.classList.remove("nav-dragging");
+    };
+  }, [open, progress, dragging]);
 
   useEffect(() => {
-    let startX = 0;
-    let currentX = 0;
-    let touching = false;
-
+    const maxDrag = 240;
     const onTouchStart = (e: TouchEvent) => {
       if (e.touches.length !== 1) return;
-      startX = e.touches[0].clientX;
-      currentX = startX;
-      touching = true;
+      const touchX = e.touches[0].clientX;
+      const fromRightEdge = window.innerWidth - touchX < 80;
+
+      if (!open && fromRightEdge) {
+        setDragging(true);
+        dragMode.current = "opening";
+        startX.current = touchX;
+      } else if (open) {
+        setDragging(true);
+        dragMode.current = "closing";
+        startX.current = touchX;
+      }
     };
 
     const onTouchMove = (e: TouchEvent) => {
-      if (!touching || e.touches.length !== 1) return;
-      currentX = e.touches[0].clientX;
+      if (!dragging || e.touches.length !== 1 || !dragMode.current) return;
+      const currentX = e.touches[0].clientX;
+      const delta = currentX - startX.current;
+
+      if (dragMode.current === "opening") {
+        const next = Math.min(Math.max((startX.current - currentX) / maxDrag, 0), 1);
+        setProgress(next);
+      } else if (dragMode.current === "closing") {
+        const next = Math.min(Math.max(1 + delta / maxDrag, 0), 1);
+        setProgress(next);
+      }
     };
 
     const onTouchEnd = () => {
-      if (!touching) return;
-      const deltaX = currentX - startX;
-      const startAtRightEdge = startX > window.innerWidth - 80; // px from right edge
-      if (!open && startAtRightEdge && deltaX < -40) {
-        setOpen(true);
-      } else if (open && deltaX > 40) {
-        setOpen(false);
+      if (!dragMode.current) return;
+      const final = progressRef.current;
+      if (dragMode.current === "opening") {
+        setOpen(final > 0.05);
+      } else if (dragMode.current === "closing") {
+        setOpen(final > 0.75);
       }
-      touching = false;
+      dragMode.current = null;
+      setDragging(false);
     };
 
     window.addEventListener("touchstart", onTouchStart, { passive: true });
@@ -100,10 +143,20 @@ export default function Navbar() {
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [open]);
+  }, [open, dragging]);
+
+  const overlayActive = progress > 0.01;
+  const asideStyle = {
+    transform: `translateX(${(1 - Math.min(Math.max(progress, 0), 1)) * 100}%)`,
+    transitionDuration: dragging ? "0s" : "300ms"
+  } as const;
+  const overlayStyle = {
+    opacity: Math.min(Math.max(progress, 0), 1),
+    transitionDuration: dragging ? "0s" : "300ms"
+  } as const;
 
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-sm bg-black/40 border-b border-white/5">
+    <header className="fixed top-0 left-0 right-0 z-30 backdrop-blur-sm bg-black/40 border-b border-white/5">
       <nav className="container">
         <div className="hidden md:flex items-center justify-between py-4">
           <Link href="#home" className="flex items-center gap-3">
@@ -154,15 +207,15 @@ export default function Navbar() {
           createPortal(
             <>
               <div
-                className={`fixed inset-0 z-40 transition-opacity duration-300 md:hidden ${
-                  open ? "pointer-events-auto bg-black/80 backdrop-blur-sm opacity-100" : "pointer-events-none opacity-0"
-                }`}
+                className={`fixed inset-0 z-40 md:hidden ${
+                  overlayActive ? "pointer-events-auto" : "pointer-events-none"
+                } bg-black/80 backdrop-blur-sm`}
+                style={overlayStyle}
                 onClick={() => setOpen(false)}
               />
               <aside
-                className={`fixed right-0 top-0 z-50 h-full w-[78vw] max-w-xs sm:max-w-sm transform bg-black/95 backdrop-blur-md border-l border-white/10 transition-transform duration-300 md:hidden ${
-                  open ? "translate-x-0" : "translate-x-full"
-                }`}
+                className="fixed right-0 top-0 z-50 h-full w-[78vw] max-w-xs sm:max-w-sm transform bg-black/95 backdrop-blur-md border-l border-white/10 transition-transform duration-300 md:hidden"
+                style={asideStyle}
               >
                 <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
                   <span className="text-sm uppercase tracking-[0.18em] text-white/70">Navigate</span>

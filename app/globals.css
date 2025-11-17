@@ -4,6 +4,7 @@
 
 :root {
   color-scheme: dark;
+  --menu-progress: 0;
 }
 
 body {
@@ -165,21 +166,31 @@ input:focus, textarea:focus {
 
 .page-shell {
   min-height: 100vh;
-  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+  transform: translate3d(calc(var(--menu-progress) * -70vw), 0, 0);
+  filter: blur(calc(var(--menu-progress) * 8px)) saturate(calc(1 - var(--menu-progress) * 0.2));
+  opacity: calc(1 - var(--menu-progress) * 0.2);
+  transition: transform 0.28s ease, filter 0.28s ease, opacity 0.28s ease;
+  will-change: transform, filter, opacity;
 }
 
 .menu-open .page-shell {
-  transform: translateX(-70vw);
-  filter: blur(6px) saturate(80%);
-  opacity: 0.85;
   pointer-events: none;
 }
 
+.nav-dragging .page-shell {
+  transition: none;
+}
+
 @media (min-width: 768px) {
-  .menu-open .page-shell {
+  .page-shell {
     transform: none;
     filter: none;
     opacity: 1;
+  }
+  .menu-open .page-shell {
     pointer-events: auto;
+  }
+  .nav-dragging .page-shell {
+    transition: none;
   }
 }

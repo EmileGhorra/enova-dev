@@ -8,7 +8,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const lenis = new Lenis({
       lerp: 0.12,
       smoothWheel: true,
-      smoothTouch: true,
       touchMultiplier: 0.9
     });
 
