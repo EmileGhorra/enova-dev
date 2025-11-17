@@ -5,6 +5,7 @@ import TechStack from "@/components/TechStack";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollTop from "@/components/ScrollTop";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Portfolio />
       <Contact />
       <Footer />
+      <ScrollTop />
     </main>
   );
 }

@@ -17,6 +17,7 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handler = () => setOpen(false);
@@ -26,6 +27,30 @@ export default function Navbar() {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "-35% 0px -45% 0px"
+      }
+    );
+
+    navLinks.forEach(({ href }) => {
+      const id = href.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -92,7 +117,12 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white/70 hover:text-white transition-colors"
+                aria-current={activeSection === link.href.replace("#", "") ? "page" : undefined}
+                className={`transition-colors ${
+                  activeSection === link.href.replace("#", "")
+                    ? "text-white"
+                    : "text-white/70 hover:text-white"
+                }`}
               >
                 {link.label}
               </Link>
@@ -145,17 +175,22 @@ export default function Navbar() {
                     <XMarkIcon className="h-5 w-5" />
                   </button>
                 </div>
-                <div className="flex flex-col gap-3 px-5 py-6 text-sm uppercase tracking-[0.12em]">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="rounded-lg border border-white/10 bg-white/5 px-3 py-3 text-white/80 hover:text-white hover:border-white/30"
-                      onClick={() => setOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+          <div className="flex flex-col gap-3 px-5 py-6 text-sm uppercase tracking-[0.12em]">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={activeSection === link.href.replace("#", "") ? "page" : undefined}
+                className={`rounded-lg border px-3 py-3 transition-colors ${
+                  activeSection === link.href.replace("#", "")
+                    ? "border-white/40 bg-white/10 text-white"
+                    : "border-white/10 bg-white/5 text-white/80 hover:text-white hover:border-white/30"
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
                 </div>
               </aside>
             </>,

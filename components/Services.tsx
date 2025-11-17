@@ -32,8 +32,8 @@ export default function Services() {
           </p>
         </Reveal>
         <div className="grid gap-6 md:grid-cols-3">
-          {services.map((service) => (
-            <Reveal key={service.title} className="card p-6 lg:p-8 space-y-4">
+          {services.map((service, idx) => (
+            <Reveal key={service.title} delay={idx * 80} className="card p-6 lg:p-8 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 rounded-full border border-white/15 flex items-center justify-center text-white/80 bg-white/5">
                   <service.icon className="h-6 w-6" />

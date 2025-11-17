@@ -33,9 +33,9 @@ export default function Portfolio() {
           </p>
         </Reveal>
         <div className="grid gap-6 md:grid-cols-3">
-          {projects.map((project) => (
+          {projects.map((project, idx) => (
             <div key={project.title} className="card p-6 lg:p-8 space-y-4">
-              <Reveal>
+              <Reveal delay={idx * 90}>
                 {project.url ? (
                   <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/15 bg-white/5">
                     <iframe

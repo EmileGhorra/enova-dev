@@ -23,9 +23,10 @@ export default function TechStack() {
           </p>
         </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-          {stacks.map((stack) => (
+          {stacks.map((stack, idx) => (
             <Reveal
               key={stack.name}
+              delay={idx * 70}
               className="card flex flex-col items-center justify-center gap-3 p-4 text-center"
             >
               <div className="h-12 w-12 flex items-center justify-center rounded-full border border-white/15 bg-white/5">
