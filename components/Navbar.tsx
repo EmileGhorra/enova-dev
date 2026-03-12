@@ -33,16 +33,19 @@ export default function Navbar() {
       }
     >
       <nav className="container flex items-center justify-between py-5">
-        <Link href="#home" className="flex items-center">
-          <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white p-1">
+        <Link href="#home" className="flex items-center justify-center gap-2">
+          <span className="relative h-8 w-8 overflow-hidden rounded-full border border-white/20 bg-white p-[3px]">
             <Image
               src="/logo.png"
               alt="E-Nova"
-              width={44}
-              height={44}
+              fill
               priority
-              className="h-full w-full object-contain"
+              sizes="32px"
+              className="object-contain"
             />
+          </span>
+          <span className="text-sm font-semibold leading-none tracking-wide text-white">
+            E-Nova
           </span>
         </Link>
         <div className="hidden items-center gap-8 md:flex">

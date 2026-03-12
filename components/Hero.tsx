@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useScrollReveal } from "@/utils/useScrollReveal";
 
-const tickerItems = "NEXT.JS · REACT · TYPESCRIPT · FIREBASE · UI/UX · MOBILE · ";
+const tickerItems = "NEXT.JS · REACT · TYPESCRIPT · FIREBASE · UI/UX · MOBILE · JAVA ·";
 
 export default function Hero() {
   const ref = useScrollReveal();
@@ -17,14 +17,14 @@ export default function Hero() {
   const animatedClass = (delay: number) =>
     mounted
       ? {
-          opacity: 1,
-          transform: "translateY(0)",
-          transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms`,
-        }
+        opacity: 1,
+        transform: "translateY(0)",
+        transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms`,
+      }
       : {
-          opacity: 0,
-          transform: "translateY(20px)",
-        };
+        opacity: 0,
+        transform: "translateY(20px)",
+      };
 
   return (
     <section
@@ -57,7 +57,7 @@ export default function Hero() {
             className="text-[14px] text-[var(--text-muted)]"
             style={animatedClass(200)}
           >
-            Web & App Development Studio - Sidon, Lebanon
+            Web & App Development Studio - Lebanon
           </p>
           <div
             className="flex flex-col items-start gap-3 sm:flex-row"
