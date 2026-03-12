@@ -60,10 +60,7 @@ export default function Portfolio() {
                     className="h-full w-full transition-transform duration-[400ms] ease-in-out group-hover:scale-[1.02]"
                     style={{ objectFit: "cover", objectPosition: "top" }}
                   />
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: "rgba(10, 10, 10, 0.45)" }}
-                  />
+                  <div className="absolute inset-0" style={{ background: "rgba(10, 10, 10, 0.45)" }} />
                   <div
                     className="absolute inset-0"
                     style={{
