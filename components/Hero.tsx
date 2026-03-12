@@ -1,42 +1,84 @@
 'use client';
 
 import Link from "next/link";
-import Reveal from "./Reveal";
+import { useEffect, useState } from "react";
+import { useScrollReveal } from "@/utils/useScrollReveal";
+
+const tickerItems = "NEXT.JS · REACT · TYPESCRIPT · FIREBASE · UI/UX · MOBILE · ";
 
 export default function Hero() {
+  const ref = useScrollReveal();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const animatedClass = (delay: number) =>
+    mounted
+      ? {
+          opacity: 1,
+          transform: "translateY(0)",
+          transition: `opacity 0.75s ease ${delay}ms, transform 0.75s ease ${delay}ms`,
+        }
+      : {
+          opacity: 0,
+          transform: "translateY(20px)",
+        };
+
   return (
-    <section id="home" className="section flex items-center justify-center min-h-screen">
-      <div className="container relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/0 to-white/5 px-6 py-12 sm:py-16 lg:py-20 shadow-[0_30px_120px_rgba(0,0,0,0.45)]">
-        <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(60%_60%_at_50%_50%,#000_0%,transparent_100%)]">
-          <div className="absolute inset-0 opacity-20 blur-3xl bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.12),transparent_40%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.1),transparent_35%)]" />
+    <section
+      id="home"
+      ref={ref}
+      className="section relative flex min-h-screen items-center overflow-hidden"
+    >
+      <div
+        className="pointer-events-none absolute left-0 top-0 h-[400px] w-[500px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 20% 60%, rgba(200,242,97,0.07) 0%, transparent 70%)",
+        }}
+      />
+      <div className="container relative z-10">
+        <div className="max-w-4xl space-y-8 pt-12 md:pt-16">
+          <p
+            className="text-[11px] uppercase tracking-[0.12em] text-[var(--accent)]"
+            style={animatedClass(0)}
+          >
+            • Available for projects
+          </p>
+          <h1
+            className="max-w-5xl text-[clamp(40px,6vw,80px)] font-bold leading-[1.04] tracking-[-0.02em]"
+            style={animatedClass(100)}
+          >
+            We build digital products <span className="text-white/25">that convert.</span>
+          </h1>
+          <p
+            className="text-[14px] text-[var(--text-muted)]"
+            style={animatedClass(200)}
+          >
+            Web & App Development Studio - Sidon, Lebanon
+          </p>
+          <div
+            className="flex flex-col items-start gap-3 sm:flex-row"
+            style={animatedClass(300)}
+          >
+            <Link href="#contact" className="btn-primary">
+              Start a project →
+            </Link>
+            <Link href="#portfolio" className="btn-outline">
+              View our work ↓
+            </Link>
+          </div>
         </div>
-        <Reveal className="relative text-center space-y-8">
-          <div className="space-y-4">
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">E-Nova Dev</p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-              Web & App Development Studio
-            </h1>
-            <p className="text-lg text-white/70">
-              Building the Future of the Web.
-            </p>
+        <div className="mt-20 overflow-hidden border-y border-[var(--border)] py-4">
+          <div className="marquee-track text-sm tracking-[0.18em] text-white/50">
+            <span className="pr-10">{tickerItems}</span>
+            <span className="pr-10">{tickerItems}</span>
+            <span className="pr-10">{tickerItems}</span>
+            <span className="pr-10">{tickerItems}</span>
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            <Link href="#contact" className="btn-primary w-full sm:w-auto">Get Started</Link>
-            <Link href="#portfolio" className="btn-outline w-full sm:w-auto">View Portfolio</Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-white/70">
-            {[
-              { label: "End-to-end Delivery", value: "Concept → Launch" },
-              { label: "Platforms", value: "Web, Mobile, Cloud" },
-              { label: "Engagement", value: "Experience-led builds" }
-            ].map((item) => (
-              <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                <p className="text-white text-base font-semibold">{item.value}</p>
-                <p className="text-white/60">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
