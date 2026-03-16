@@ -65,7 +65,7 @@ export default function Portfolio() {
                     className="absolute inset-0"
                     style={{
                       background:
-                        "radial-gradient(ellipse 60% 50% at 0% 100%, rgba(200,242,97,0.12) 0%, transparent 70%)",
+                        "radial-gradient(ellipse 60% 50% at 0% 100%, var(--accent-12) 0%, transparent 70%)",
                     }}
                   />
                   <div className="card-hover-overlay absolute inset-0 flex items-center justify-center bg-[rgba(10,10,10,0.7)] opacity-0 transition-opacity duration-300 group-hover:opacity-100">

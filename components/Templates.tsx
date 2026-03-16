@@ -162,7 +162,7 @@ export default function Templates() {
                       </a>
                       <Link
                         href="/#contact"
-                        className="inline-flex min-h-[52px] w-full items-center justify-center border border-[var(--accent)] px-5 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--accent)] transition-colors duration-200 hover:bg-[rgba(200,242,97,0.06)] sm:w-auto"
+                        className="inline-flex min-h-[52px] w-full items-center justify-center border border-[var(--accent)] px-5 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--accent)] transition-colors duration-200 hover:bg-[var(--accent-06)] sm:w-auto"
                       >
                         Use This Template
                       </Link>

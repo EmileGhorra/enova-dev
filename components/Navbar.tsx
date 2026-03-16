@@ -61,7 +61,7 @@ export default function Navbar() {
         </div>
         <Link
           href="#contact"
-          className="rounded-[4px] border px-4 py-2 text-[13px] font-medium transition-colors hover:bg-[rgba(200,242,97,0.08)]"
+          className="rounded-[4px] border px-4 py-2 text-[13px] font-medium transition-colors hover:bg-[var(--accent-08)]"
           style={{
             borderColor: "var(--accent)",
             color: "var(--accent)",

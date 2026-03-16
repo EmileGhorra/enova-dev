@@ -35,8 +35,7 @@ export default function Hero() {
       <div
         className="pointer-events-none absolute left-0 top-0 h-[400px] w-[500px]"
         style={{
-          background:
-            "radial-gradient(ellipse at 20% 60%, rgba(200,242,97,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at 20% 60%, var(--accent-07) 0%, transparent 70%)",
         }}
       />
       <div className="container relative z-10">

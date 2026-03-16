@@ -100,8 +100,8 @@ export default function Contact() {
               rel="noreferrer"
               className="group w-full sm:w-auto"
             >
-              <span className="flex min-h-[72px] min-w-[220px] items-center gap-4 rounded-[10px] border border-[rgba(200,242,97,0.2)] bg-[linear-gradient(135deg,rgba(200,242,97,0.14),rgba(20,20,20,0.96))] px-5 py-4 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-[rgba(200,242,97,0.42)] group-hover:shadow-[0_18px_40px_rgba(200,242,97,0.14)]">
-                <span className="flex h-11 w-11 items-center justify-center rounded-[10px] bg-[var(--accent)] text-[#0a0a0a] shadow-[0_10px_24px_rgba(200,242,97,0.2)]">
+              <span className="flex min-h-[72px] min-w-[220px] items-center gap-4 rounded-[10px] border border-[var(--accent-20)] bg-[linear-gradient(135deg,var(--accent-14),rgba(20,20,20,0.96))] px-5 py-4 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-[var(--accent-42)] group-hover:shadow-[0_18px_40px_var(--accent-14)]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-[10px] bg-[var(--accent)] text-[#0a0a0a] shadow-[0_10px_24px_var(--accent-20)]">
                   <svg
                     aria-hidden="true"
                     focusable="false"
@@ -113,12 +113,12 @@ export default function Contact() {
                   </svg>
                 </span>
                 <span className="flex flex-1 flex-col text-left">
-                  <span className="text-[11px] uppercase tracking-[0.14em] text-[rgba(200,242,97,0.62)]">
+                  <span className="text-[11px] uppercase tracking-[0.14em] text-[var(--accent-62)]">
                     Fast Reply
                   </span>
                   <span className="mt-1 text-[15px] font-medium text-white">WhatsApp</span>
                 </span>
-                <span className="text-sm text-[rgba(200,242,97,0.62)] transition-colors duration-300 group-hover:text-[var(--accent)]">
+                <span className="text-sm text-[var(--accent-62)] transition-colors duration-300 group-hover:text-[var(--accent)]">
                   →
                 </span>
               </span>

@@ -62,7 +62,7 @@ export default function Services() {
               <style jsx>{`
                 div.group:hover {
                   border-top: 2px solid var(--accent);
-                  background: rgba(200, 242, 97, 0.03);
+                  background: var(--accent-03);
                 }
               `}</style>
             </Reveal>

@@ -4,11 +4,23 @@
 
 :root {
   color-scheme: dark;
-  --accent: #C8F261;
+  --accent: #23d2eb;
   --bg: #0a0a0a;
   --surface: #141414;
   --border: rgba(255,255,255,0.07);
   --text-muted: rgba(255,255,255,0.38);
+  --accent-03: color-mix(in srgb, var(--accent) 3%, transparent);
+  --accent-05: color-mix(in srgb, var(--accent) 5%, transparent);
+  --accent-06: color-mix(in srgb, var(--accent) 6%, transparent);
+  --accent-07: color-mix(in srgb, var(--accent) 7%, transparent);
+  --accent-08: color-mix(in srgb, var(--accent) 8%, transparent);
+  --accent-12: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-14: color-mix(in srgb, var(--accent) 14%, transparent);
+  --accent-18: color-mix(in srgb, var(--accent) 18%, transparent);
+  --accent-20: color-mix(in srgb, var(--accent) 20%, transparent);
+  --accent-42: color-mix(in srgb, var(--accent) 42%, transparent);
+  --accent-55: color-mix(in srgb, var(--accent) 55%, transparent);
+  --accent-62: color-mix(in srgb, var(--accent) 62%, transparent);
 }
 
 html {
@@ -17,7 +29,7 @@ html {
 
 body {
   background:
-    radial-gradient(ellipse at top left, rgba(200, 242, 97, 0.05), transparent 38%),
+    radial-gradient(ellipse at top left, var(--accent-05), transparent 38%),
     radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.04), transparent 32%),
     var(--bg);
   color: #fff;
@@ -90,8 +102,8 @@ textarea {
 }
 
 input:focus, textarea:focus {
-  border-color: rgba(200,242,97,0.55);
-  box-shadow: 0 0 0 4px rgba(200,242,97,0.08);
+  border-color: var(--accent-55);
+  box-shadow: 0 0 0 4px var(--accent-08);
 }
 
 .btn-primary {
@@ -104,14 +116,14 @@ input:focus, textarea:focus {
   color: var(--bg);
   font-weight: 600;
   border: 1px solid transparent;
-  box-shadow: 0 14px 40px rgba(200,242,97,0.12);
+  box-shadow: 0 14px 40px var(--accent-12);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
   text-align: center;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 50px rgba(200,242,97,0.18);
+  box-shadow: 0 18px 50px var(--accent-18);
 }
 
 .btn-outline {

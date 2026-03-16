@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="section pt-0">
       <div className="container text-center text-white/70 text-sm space-y-2">
-        <div>E-Nova Dev — © 2025. All Rights Reserved.</div>
+        <div>E-Nova Dev — © 2026. All Rights Reserved.</div>
         <a
           href="https://www.instagram.com/enova.dev/"
           target="_blank"
