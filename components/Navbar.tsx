@@ -1,6 +1,6 @@
 'use client';
 
-import Image from "next/image";
+import AnimatedLogo from "@/components/AnimatedLogo";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -33,20 +33,8 @@ export default function Navbar() {
       }
     >
       <nav className="container flex items-center justify-between py-5">
-        <Link href="#home" className="flex items-center justify-center gap-2">
-          <span className="relative h-8 w-8 overflow-hidden rounded-full border border-white/20 bg-white p-[3px]">
-            <Image
-              src="/logo.png"
-              alt="E-Nova"
-              fill
-              priority
-              sizes="32px"
-              className="object-contain"
-            />
-          </span>
-          <span className="text-sm font-semibold leading-none tracking-wide text-white">
-            E-Nova
-          </span>
+        <Link href="#home" className="flex items-center justify-center">
+          <AnimatedLogo />
         </Link>
         <div className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
@@ -61,11 +49,12 @@ export default function Navbar() {
         </div>
         <Link
           href="#contact"
-          className="rounded-[4px] border px-4 py-2 text-[13px] font-medium transition-colors hover:bg-[var(--accent-08)]"
+          className="rounded-[4px] border px-4 py-2 text-[13px] font-medium transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--accent-08)]"
           style={{
             borderColor: "var(--accent)",
             color: "var(--accent)",
-            background: "transparent",
+            background: "var(--accent-03)",
+            boxShadow: "0 0 0 1px var(--accent-20) inset, 0 0 18px var(--accent-14)",
           }}
         >
           Contact us →

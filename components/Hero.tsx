@@ -47,7 +47,7 @@ export default function Hero() {
             • Available for projects
           </p>
           <h1
-            className="max-w-5xl text-[clamp(40px,6vw,80px)] font-bold leading-[1.04] tracking-[-0.02em]"
+            className="max-w-5xl font-orbitron text-[clamp(40px,6vw,80px)] font-bold leading-[1.04] tracking-[-0.02em]"
             style={animatedClass(100)}
           >
             We build digital products <span className="text-white/25">that convert.</span>

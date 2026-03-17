@@ -4,11 +4,11 @@
 
 :root {
   color-scheme: dark;
-  --accent: #23d2eb;
+  --accent: #00e5ff;
   --bg: #0a0a0a;
   --surface: #141414;
-  --border: rgba(255,255,255,0.07);
-  --text-muted: rgba(255,255,255,0.38);
+  --border: rgba(255, 255, 255, 0.07);
+  --text-muted: rgba(255, 255, 255, 0.38);
   --accent-03: color-mix(in srgb, var(--accent) 3%, transparent);
   --accent-05: color-mix(in srgb, var(--accent) 5%, transparent);
   --accent-06: color-mix(in srgb, var(--accent) 6%, transparent);
@@ -71,8 +71,15 @@ a {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .reveal {
@@ -86,8 +93,9 @@ a {
   transform: translateY(0) scale(1);
 }
 
-input, textarea {
-  background-color: rgba(255,255,255,0.02);
+input,
+textarea {
+  background-color: rgba(255, 255, 255, 0.02);
   color: #fff;
   border: 1px solid var(--border);
   border-radius: 0.5rem;
@@ -101,7 +109,8 @@ textarea {
   resize: vertical;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   border-color: var(--accent-55);
   box-shadow: 0 0 0 4px var(--accent-08);
 }
@@ -133,7 +142,7 @@ input:focus, textarea:focus {
   border-radius: 0.25rem;
   padding: 0.9rem 1.35rem;
   border: 1px solid var(--border);
-  color: rgba(255,255,255,0.86);
+  color: rgba(255, 255, 255, 0.86);
   font-weight: 600;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
@@ -141,22 +150,22 @@ input:focus, textarea:focus {
 
 .btn-outline:hover {
   transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.22);
-  box-shadow: 0 10px 30px rgba(255,255,255,0.08);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.08);
 }
 
 .card {
   border: 1px solid var(--border);
   border-radius: 0.5rem;
   background: var(--surface);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.14);
-  box-shadow: 0 14px 60px rgba(0,0,0,0.55);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 60px rgba(0, 0, 0, 0.55);
   background: #171717;
 }
 
@@ -213,8 +222,13 @@ input:focus, textarea:focus {
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .cursor-dot {

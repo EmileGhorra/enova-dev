@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Orbitron } from "next/font/google";
 import Cursor from "@/components/Cursor";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://e-nova.dev"),
@@ -86,7 +94,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${orbitron.variable} font-sans`}>
         <Cursor />
         {children}
       </body>
